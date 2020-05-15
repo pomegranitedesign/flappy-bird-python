@@ -1,22 +1,32 @@
 import pygame
 import sys
+import os
 
-# Initialize pygame in order to make
-# everything work
+# Initialize pygame
 pygame.init()
 
-# Setup the variables for screen dimensions
-size = width, height = 350, 200
+# Basic setup
+size = width, height = 280, 400
 
-# Setup the backgroud image
+# Change title and logo
+pygame.display.set_caption('Flappy Bird')
+icon = pygame.image.load('flappy.ico')
+pygame.display.set_icon(icon)
 
+# Background image
+backgroundImage = pygame.image.load('./assets/sprites/background-night.png')
 
-class BackgroudImage(pygame.sprite.Sprite):
-    def __init__(self, image, location):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = image
-        self.rect = self.image.get_rect()
-        self.rect.left, self.rect.top = location
+# Images
+pipe = pygame.image.load('./assets/sprites/pipe-green.png')
 
+# Setup the display
+screen = pygame.display.set_mode(size)
 
-bgImage = BackgroudImage()
+isRunning = True
+while isRunning:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+            isRunning = False
+    screen.blit(backgroundImage, (0, 0))
+    pygame.display.update()
